@@ -25,15 +25,15 @@ def create_post(request):
     return render(request, "blog/create_post.html", data)
 
 
-def edit_post(request):
+def edit_post(request, post_id):
     data = {}
     return render(request, "blog/edit_post.html", data)
 
 
-def delete_post(request):
+def delete_post(request, post_id):
     return render(request, "blog/delete_post.html")
 
 
-def post_detail(request):
+def post_detail(request, post_id):
     data = {}
     return render(request, "blog/post_detail.html", data)
