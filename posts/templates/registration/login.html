@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+</head>
+<body>
+    <div class="container mt-5" style="max-width: 400px;">
+        <h2 class="mb-4 text-center">Iniciar sesión</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-wrapper">
+                {{ form.as_p }}
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+    <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
+</body>
