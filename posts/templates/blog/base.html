@@ -1,17 +1,26 @@
 {% load static %}
+{% load gravatar %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Blog</title>
+    <title>Mi Blog | {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+    <link rel="icon" href="{% static 'blog/img/logo.png' %}" type="image/png">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top opacity-75">
         <div class="container-fluid">
-            <a href="{% url 'post_list' %}" class="navbar-brand">Mi Blog</a>
+            <a href="{% url 'post_list' %}" class="navbar-brand">
+                <img src="{% static 'blog/img/logo.png' %}" alt="Logo" class="me-2" width="30" height="24">
+                Mi Blog
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,24 +28,33 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="{% url 'create_post' %}" class="nav-link">Crear publicación</a>
+                            <a href="{% url 'create_post' %}" class="nav-link text-white"><i class="bi bi-plus-circle"></i> Crear publicación</a>
                         </li>
                     {% endif %}
                 </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <span class="navbar-text me-2">Hola, {{ user.first_name }}</span>
+                        <li class="nav-item d-flex align-items-center">
+                            <img
+                                src="{{ user.email|gravatar }}"
+                                alt="Avatar"
+                                class="rounded-circle me-2"
+                                width="32"
+                                height="32"
+                            >
+                            <span class="navbar-text me-2 text-white">
+                                Hola, {{ user.first_name|default:user.username }}
+                            </span>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <form method="POST" action="{% url 'logout' %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                                <button type="submit" class="btn btn-light btn-sm"><i class="bi bi-box-arrow-right"></i></button>
                             </form>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Iniciar sesión</a>
+                            <a href="{% url 'login' %}" class="btn btn-light btn-sm"><i class="bi bi-box-arrow-in-right"></i></a>
                         </li>
                     {% endif %}
                 </ul>

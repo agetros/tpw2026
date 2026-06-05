@@ -1,11 +1,20 @@
 {% extends "blog/base.html" %}
+{% block title %}Crear publicación{% endblock %}
 {% block content %}
-<h1>Crear nueva publicación</h1>
-<hr>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Publicar</button>
-    <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancelar</a>
-</form>
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+        <h4 class="card-title">Crear nueva publicación</h4>
+        <p class="card-text">Completa el formulario para crear una nueva publicación en el blog.</p>
+    </div>
+</div>
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Publicar</button>
+            <a href="{% url 'post_list' %}" class="btn btn-secondary"><i class="bi bi-x-circle"></i> Cancelar</a>
+        </form>
+    </div>
+</div>
 {% endblock content %}

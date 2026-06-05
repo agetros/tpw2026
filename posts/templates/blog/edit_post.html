@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block title %}Editar publicación{% endblock %}
+{% block content %}
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+        <h4 class="card-title">Editar publicación</h4>
+        <p class="card-text">Modifica el formulario para actualizar la publicación en el blog.</p>
+    </div>
+</div>
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Actualizar</button>
+            <a href="{% url 'post_list' %}" class="btn btn-secondary"><i class="bi bi-x-circle"></i> Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
