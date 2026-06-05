@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
     <link rel="icon" href="{% static 'blog/img/logo.png' %}" type="image/png">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top opacity-75">
         <div class="container-fluid">
             <a href="{% url 'post_list' %}" class="navbar-brand">
@@ -61,7 +61,7 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
+    <div class="container mt-4 flex-grow-1">
     {% block content %}
     {% endblock content %}
     </div>
