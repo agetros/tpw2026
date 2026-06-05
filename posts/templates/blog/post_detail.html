@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load gravatar %}
+{% load utils %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
 <div class="card shadow-sm mb-4 border-0">
@@ -15,6 +16,7 @@
             >
             {{ post.author.first_name }} {{ post.author.last_name }} - <i class="bi bi-calendar-fill"></i> {{ post.created_at | date:"d/m/Y H:i" }}
         </p>
+        <p class="text-uppercase text-white">{{ post.categories|category_badge|safe }}</p>
     </div>
 </div>
 <div class="card shadow-sm mb-4 border-0">
